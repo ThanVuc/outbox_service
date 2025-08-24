@@ -55,69 +55,72 @@ func NewQueryHelper(psqlPool *pgxpool.Pool) *QueryHelper {
 }
 
 func (q *QueryHelper) SelectOutboxes(ctx context.Context) ([]*common.Outbox, error) {
-	rows, err := q.psqlPool.Query(ctx, openPoolQuery)
-	if err != nil {
-		q.logger.Error("Failed to query outbox table", "")
-		return nil, err
-	}
-
-	outboxes := make([]*common.Outbox, 0)
-	for rows.Next() {
-		var (
-			id            string
-			aggregateType string
-			aggregateId   string
-			eventType     string
-			payload       []byte
-			status        int16
-			occurredAt    time.Time
-			processedAt   *time.Time
-			errorMessage  *string
-			retryCount    int32
-			requestId     string
-		)
-
-		err = rows.Scan(
-			&id,
-			&aggregateType,
-			&aggregateId,
-			&eventType,
-			&payload,
-			&status,
-			&occurredAt,
-			&processedAt,
-			&errorMessage,
-			&retryCount,
-			&requestId,
-		)
+	for {
+		rows, err := q.psqlPool.Query(ctx, openPoolQuery)
 		if err != nil {
-			q.logger.Error("Failed to scan outbox row", "", zap.Error(err))
-			return nil, err
+			q.logger.Error("Failed to query outbox table", "")
+			time.Sleep(2 * time.Second)
+			continue
 		}
 
-		out := &common.Outbox{
-			Id:            id,
-			AggregateType: aggregateType,
-			AggregateId:   aggregateId,
-			EventType:     eventType,
-			Payload:       payload,
-			Status:        fmt.Sprint(status),
-			OccurredAt:    occurredAt.Unix(),
-			RetryCount:    retryCount,
-			RequestId:     requestId,
-		}
+		outboxes := make([]*common.Outbox, 0)
+		for rows.Next() {
+			var (
+				id            string
+				aggregateType string
+				aggregateId   string
+				eventType     string
+				payload       []byte
+				status        int16
+				occurredAt    time.Time
+				processedAt   *time.Time
+				errorMessage  *string
+				retryCount    int32
+				requestId     string
+			)
 
-		if processedAt != nil {
-			t := processedAt.Unix()
-			out.ProcessedAt = &t
-		}
-		if errorMessage != nil {
-			out.ErrorMessage = errorMessage
-		}
+			err = rows.Scan(
+				&id,
+				&aggregateType,
+				&aggregateId,
+				&eventType,
+				&payload,
+				&status,
+				&occurredAt,
+				&processedAt,
+				&errorMessage,
+				&retryCount,
+				&requestId,
+			)
+			if err != nil {
+				q.logger.Error("Failed to scan outbox row", "", zap.Error(err))
+				return nil, err
+			}
 
-		outboxes = append(outboxes, out)
+			out := &common.Outbox{
+				Id:            id,
+				AggregateType: aggregateType,
+				AggregateId:   aggregateId,
+				EventType:     eventType,
+				Payload:       payload,
+				Status:        fmt.Sprint(status),
+				OccurredAt:    occurredAt.Unix(),
+				RetryCount:    retryCount,
+				RequestId:     requestId,
+			}
+
+			if processedAt != nil {
+				t := processedAt.Unix()
+				out.ProcessedAt = &t
+			}
+			if errorMessage != nil {
+				out.ErrorMessage = errorMessage
+			}
+
+			outboxes = append(outboxes, out)
+		}
+		return outboxes, nil
 	}
-	return outboxes, nil
 }
 
 func (q *QueryHelper) SetProcessedOutbox(ctx context.Context, outbox *common.Outbox) error {
