@@ -32,7 +32,7 @@ func NewAuthPool(
 }
 
 func (p *AuthPool) OpenUserPoolWorker(ctx context.Context) error {
-	ticker := time.NewTicker(3 * time.Second)
+	ticker := time.NewTicker(2 * time.Second)
 	defer ticker.Stop()
 
 	for {
