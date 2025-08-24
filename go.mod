@@ -4,7 +4,7 @@ go 1.24.3
 
 require (
 	github.com/jackc/pgx/v5 v5.7.5
-	github.com/thanvuc/go-core-lib v1.0.14
+	github.com/thanvuc/go-core-lib v1.0.16
 	go.uber.org/zap v1.27.0
 )
 
