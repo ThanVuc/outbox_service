@@ -1,11 +1,11 @@
 
-name: Deploy to VPS on merge to main
+name: Deploy to VPS on merge to qa
 
 on:
   pull_request:
     types: [closed]
     branches:
-      - main
+      - qa
 
 env:
   CONTAINER_NAME: outbox_service

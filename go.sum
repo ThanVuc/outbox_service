@@ -56,10 +56,15 @@ github.com/thanvuc/go-core-lib v1.0.13 h1:Ge+uCCicbkJdWv8BfzpIck+MgVPdflpxUNVQLZ
 github.com/thanvuc/go-core-lib v1.0.13/go.mod h1:RC7I6iRit7prOidrRgQX1nGfXWFtded22gbPZ/+UrB4=
 github.com/thanvuc/go-core-lib v1.0.14 h1:Bu/D+r7K3/Vpg4gNW4lDdn5es7Cs22DYjEWjQEIG0jk=
 github.com/thanvuc/go-core-lib v1.0.14/go.mod h1:RC7I6iRit7prOidrRgQX1nGfXWFtded22gbPZ/+UrB4=
+<<<<<<< Updated upstream
 github.com/thanvuc/go-core-lib v1.0.15 h1:DESlX2PPLvJi1BYVR+z6oI25Z+V2vigWJhpsDe1vRoo=
 github.com/thanvuc/go-core-lib v1.0.15/go.mod h1:RC7I6iRit7prOidrRgQX1nGfXWFtded22gbPZ/+UrB4=
 github.com/thanvuc/go-core-lib v1.0.16 h1:JxqnwLU4hkdey0xREeKnRH7x/dusB4dhVSpXvH8LKJk=
 github.com/thanvuc/go-core-lib v1.0.16/go.mod h1:RC7I6iRit7prOidrRgQX1nGfXWFtded22gbPZ/+UrB4=
+=======
+github.com/thanvuc/go-core-lib v1.1.2 h1:PAfB6oiATp6TPjsDfz6O4nXaMt+A/UPY677eKjpOokc=
+github.com/thanvuc/go-core-lib v1.1.2/go.mod h1:5vzQrSLv8R9rR55rD0Z38ZFFWRBUuSoe7o+F3A+QfS0=
+>>>>>>> Stashed changes
 github.com/wagslane/go-rabbitmq v0.15.0 h1:KibShYLLeDYc3C5fnx+BjiHJLJdL6D5/BysgcRJknRE=
 github.com/wagslane/go-rabbitmq v0.15.0/go.mod h1:ts7Di9tkLMyI0Z6/aA6T78zQkKDNrtApVis1qqMjqu4=
 go.uber.org/goleak v1.3.0 h1:2K3zAYmnTNqV73imy9J1T3WC+gmCePx2hEGkimedGto=
