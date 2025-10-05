@@ -4,7 +4,11 @@ go 1.24.3
 
 require (
 	github.com/jackc/pgx/v5 v5.7.5
+<<<<<<< Updated upstream
 	github.com/thanvuc/go-core-lib v1.0.16
+=======
+	github.com/thanvuc/go-core-lib v1.1.2
+>>>>>>> Stashed changes
 	go.uber.org/zap v1.27.0
 )
 
