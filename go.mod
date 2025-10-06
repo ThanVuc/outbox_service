@@ -4,7 +4,8 @@ go 1.24.3
 
 require (
 	github.com/jackc/pgx/v5 v5.7.5
-	github.com/thanvuc/go-core-lib v1.0.16
+	github.com/thanvuc/go-core-lib v1.1.2
+	github.com/wagslane/go-rabbitmq v0.15.0
 	go.uber.org/zap v1.27.0
 )
 
@@ -13,7 +14,6 @@ require (
 	github.com/rabbitmq/amqp091-go v1.10.0 // indirect
 	github.com/rogpeppe/go-internal v1.14.1 // indirect
 	github.com/spf13/viper v1.20.1 // indirect
-	github.com/wagslane/go-rabbitmq v0.15.0 // indirect
 )
 
 require (
